@@ -1,0 +1,35 @@
+
+-- 输入法
+1、安装中文字体
+yay -S adobe-source-han-sans-cn-fonts
+2、fcitx5
+yay -S fcitx5-im
+3、 fcitx5中文支持
+yay -S fcitx5-chinese-addons
+4、添加fcitx的配置，在配置文件“/etc/environment”中添加几行
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+SDL_IM_MODULE=fcitx
+GLFW_IM_MODULE=ibus
+
+
+-- 解决关机主板不断电、休眠后不能唤醒问题
+1、故障现象，系统休眠后无法唤醒，按任意键无法唤醒，
+解决步骤：
+1、sudo vim /etc/default/grub
+2、GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi_osi=! pci=noaer"
+在 GRUB_CMDLINE_LINUX_DEFAULT 行中添加 acpi_osi=!。
+3、更新grub配置：1、ubuntu sudo update-grub  update-grub2   2、arch  sudo grub-mkconfig -o /boot/grub/grub.cfg
+详细解释
+ACPI：这是一个标准，用于在操作系统和底层硬件之间进行通信，特别是在电源管理和热插拔设备方面。
+OSI (Operating System Identifier)：ACPI 规范中的一个特性，允许固件根据操作系统类型调整其行为。默认情况下，许多固件会假定系统是 Windows，并据此做出一些假设。
+acpi_osi=!：当使用这个参数时，它告诉固件不要假设任何特定的操作系统类型。这意味着固件不应该应用任何针对特定操作系统的优化或行为。
+pci=noaer: 是另一个常用的参数，用于禁用 PCI 错误恢复，有时也能帮助解决某些硬件兼容性问题。
+使用场景
+解决兼容性问题：
+当 Linux 与某些硬件不兼容时，特别是与 ACPI 相关的问题，使用 acpi_osi=! 可以帮助解决这些问题。
+例如，有些电脑在 Linux 下无法正确唤醒，这可能是由于固件为 Windows 做了特定的优化，而这些优化对 Linux 不适用。
+避免特定行为：
+有些固件可能会为 Windows 应用一些特殊的电源管理策略，这些策略可能会干扰 Linux 的电源管理。
+————————————————
