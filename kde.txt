@@ -23,6 +23,7 @@ GLFW_IM_MODULE=ibus
 sudo pacman -S lib32-nvidia-utils
 4 禁用kms(内核级显卡驱动，禁用会导致grub与开机时tty界面的分辨率无法完全适配，与plymouth等需要kms的软件无法使用，但会使用高性能的专有驱动而不是nouveau
 sudo vim /etc/mkinitcpio.conf
+找到HOOKS开头的一行，将后面的kms删除
 sudo mkinitcpio -p linux
 
 -- 解决关机主板不断电、休眠后不能唤醒问题
