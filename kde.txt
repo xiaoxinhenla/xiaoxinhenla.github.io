@@ -14,6 +14,17 @@ SDL_IM_MODULE=fcitx
 GLFW_IM_MODULE=ibus
 
 
+
+## 安装nvidia显卡
+1 安装nvidia nvidia-utils nvidia-settings 
+1 sudo pacman -S nvidia nvidia-utils nvidia-settings 
+2 编辑/etc/pacman.conf 启用multilib仓库安装32程序
+3 安装lib32-nivdia-utils
+sudo pacman -S lib32-nvidia-utils
+4 禁用kms(内核级显卡驱动，禁用会导致grub与开机时tty界面的分辨率无法完全适配，与plymouth等需要kms的软件无法使用，但会使用高性能的专有驱动而不是nouveau
+sudo vim /etc/mkinitcpio.conf
+sudo mkinitcpio -p linux
+
 -- 解决关机主板不断电、休眠后不能唤醒问题
 1、故障现象，系统休眠后无法唤醒，按任意键无法唤醒，
 解决步骤：
