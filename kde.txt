@@ -16,8 +16,8 @@ GLFW_IM_MODULE=ibus
 
 
 ## 安装nvidia显卡
-1 安装nvidia nvidia-utils nvidia-settings 
-1 sudo pacman -S nvidia nvidia-utils nvidia-settings 
+1 安装nvidia-dkms nvidia-utils nvidia-settings 
+1 sudo pacman -S nvidia-dkms nvidia-utils nvidia-settings 
 2 编辑/etc/pacman.conf 启用multilib仓库安装32程序
 3 安装lib32-nivdia-utils
 sudo pacman -S lib32-nvidia-utils
