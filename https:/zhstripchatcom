@@ -1,0 +1,1 @@
+ffmpeg -re -i "https://b-hls-19.doppiocdn.live/hls/96010075/96010075.m3u8?playlistType=lowLatency" -c copy   -f segment -segment_list segment_list.txt -segment_time 60 output%03d.ts -c copy -f matroska -y
